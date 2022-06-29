@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>My Team</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+  </head>
+  <body onload="loadTeamView();">
+    <div id="content">
+      <h1>My Team</h1>
+      <p><b>Create a Task</b></p>
+      <form action="/create-task" method="POST">
+        <p>Task Title:</p>
+        <textarea name="title"></textarea>
+        <p>Description:</p>
+        <textarea name="desc"></textarea>
+        <p>Time Goal (Minutes):</p>
+        <textarea name="time"></textarea>
+        <br/>
+        <input type="submit" />
+      </form>
+      <div id="users">
+      </div>
+    </div>
+  </body>
+</html>
