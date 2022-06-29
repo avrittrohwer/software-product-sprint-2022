@@ -26,3 +26,34 @@ function addRandomGreeting() {
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
 }
+
+function loadTeamView() {
+  fetch('/list-tasks').then(response => response.json()).then((tasks) => {
+    const taskListElement = document.getElementById('users');
+    tasks.forEach((task) => {
+      taskListElement.appendChild(createTaskElement(task));
+    })
+  });
+}
+
+function createTaskElement(task) {  
+  const taskElement = document.createElement('div');
+  taskElement.className = 'task';
+
+  const br = document.createElement("br");
+  const taskTitleElement = document.createElement('h3');
+  taskTitleElement.innerText = task.title;
+
+  const taskDescElement = document.createElement('p');
+  taskDescElement.innerText = task.desc;
+
+  const taskTimeElement = document.createElement('p');
+  taskTimeElement.innerText = task.time.toString();
+
+  taskElement.appendChild(taskTitleElement);
+  taskElement.appendChild(br);
+  taskElement.appendChild(taskDescElement);
+  taskElement.appendChild(br);
+  taskElement.appendChild(taskTimeElement);
+  return taskElement;
+}
