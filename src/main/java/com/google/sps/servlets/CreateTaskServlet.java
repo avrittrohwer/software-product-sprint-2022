@@ -20,7 +20,7 @@ public class CreateTaskServlet extends HttpServlet {
     // Get the value entered in the form.
     String title = request.getParameter("title");
     String desc = request.getParameter("desc");
-    Int time = request.getParameter("time");
+    String time = request.getParameter("time");
 
     Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
     KeyFactory keyFactory = datastore.newKeyFactory().setKind("Task");
@@ -33,7 +33,7 @@ public class CreateTaskServlet extends HttpServlet {
     datastore.put(taskEntity);
 
     // reload page 
-    response.sendRedirect('/team.html');
+    response.sendRedirect("/team.html");
   }
 }
 

@@ -32,10 +32,10 @@ public class ListTasksServlet extends HttpServlet {
       Entity entity = results.next();
 
       String title = entity.getString("title");
-      String description = entity.getString("desc");
-      Int time = entity.getInt("time");
+      String desc = entity.getString("desc");
+      String time = entity.getString("time");
 
-      Task task = new Task(title, desc, time);
+      Task task = new Task(title, description, time);
       tasks.add(task);
     }
 
