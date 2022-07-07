@@ -18,22 +18,25 @@ public class CreateTaskServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
     // Get the value entered in the form.
+    String userN = request.getParameter("userN");
     String title = request.getParameter("title");
     String desc = request.getParameter("desc");
     String time = request.getParameter("time");
+    long timeCreated = System.currentTimeMillis();
 
     Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
     KeyFactory keyFactory = datastore.newKeyFactory().setKind("Task");
     FullEntity taskEntity =
         Entity.newBuilder(keyFactory.newKey())
+            .set("userN", userN)
             .set("title", title)
             .set("desc", desc)
             .set("time", time)
+            .set("timeCreated", timeCreated)
             .build();
     datastore.put(taskEntity);
-
     // reload page 
-    response.sendRedirect("/team.html");
+    response.sendRedirect("/team.html?userN="+userN);
   }
 }
 

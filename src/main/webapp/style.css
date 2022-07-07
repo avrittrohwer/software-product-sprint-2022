@@ -1,4 +1,4 @@
-#content {
+/*#content {
   margin-left: auto;
   margin-right: auto;
   width: 650px;
@@ -6,4 +6,156 @@
 
 #greeting-container {
   margin-top: 20px;
+}*/
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css");
+
+
+
+body{
+    overflow: hidden;
+    height: 100vh;
+}
+
+.custom-row{
+    background-color: #304d63;
+    height: 100%;
+    
+}
+
+.curtask{
+    border-bottom-style: solid;
+    position: relative;
+    height: 50%;
+    width: 100%;
+    overflow: auto;
+}
+
+.pasttasks{
+    position: relative;
+    height: 50%;
+    width: 100%;
+    bottom: 0;
+}
+
+.mytasks .p{
+    padding: 0px 0px 0px 10px;
+    color: #def6ff;
+    position: sticky;
+}
+
+.task{
+    margin: 2px 5px;
+}
+
+.conta{
+    height: 100vh;
+}
+
+.cont{
+    background-color: #304d63;
+    height: 100vh;
+}
+
+.colur{
+    border-left-style: solid;
+}
+
+.mod{
+    align-content: center;
+}
+
+
+.headers{
+    background-color: #223747;
+    border-bottom-style: solid;
+    border-top-style: solid;
+    position: relative;
+    top: 0;
+    width: 100%;
+    height: 10%;
+}
+
+.row>*{
+    padding: 0px;
+}
+
+
+
+
+.users-drawer{
+    display: flex;
+    transition: .3s ease;
+    color: rgb(204, 204, 204);
+    
+}
+
+.users-drawer .text {
+    width: 100%; 
+}
+
+.users-drawer .text h6{
+    margin: 0px;
+    font-size:20px;
+}
+
+.users-drawer .text p{
+    margin: 0px;
+}
+
+.users-drawer:hover{
+    background: #5a7f9b;
+    color: black;
+}
+
+.text .row .pad{
+    padding-right: 0%;
+}
+
+hr{
+    margin: 3px auto;
+    width: 95%;
+    color: black;
+}
+.uspfp{
+    font-size: 2.5vw; 
+    padding: 0px 5px;
+}
+
+
+.flech{
+    font-size: 20px;
+}
+
+h3{
+    Color: #def6ff;
+    text-align: center;
+}     
+
+
+.username{
+    text-align: center;
+}
+
+.logbox{
+    overflow: auto;
+    height: 90%;
+    position: fixed;
+    bottom: 0;
+    width: 50%;
+}
+
+.logboxuser{
+    overflow: auto;
+    height: 45%;
+    position: fixed;
+    width: 50%;
+}
+
+
+
+.mytasks{
+    position: relative;
+    height: 90%;
+    bottom: 0;
+    width: 100%;
 }
