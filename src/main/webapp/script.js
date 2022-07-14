@@ -28,9 +28,24 @@ function addRandomGreeting() {
 }
 
 function loadTeamView() {
-  fetch('/list-tasks').then(response => response.json()).then((tasks) => {
+  fetch('/list-tasks?userN=bobby').then(response => response.json()).then((allTasks) => {
     const taskListElement = document.getElementById('users');
-    tasks.forEach((task) => {
+
+    console.log(allTasks);
+    const curTaskHeader = document.createElement(h2);
+    curTaskHeader.innerText = "Current Task";
+    taskListElement.append(curTaHeader);
+    taskListElement.append(allTasks.currentTask);
+    
+    const prevTaskHeader = document.createElement(h2);
+    prevTaskHeader.innerText = "Previous Tasks";
+    allTasks.prevTasks.forEach((task) => {
+      taskListElement.appendChild(createTaskElement(task));
+    })
+
+    const otherTaskHeader = document.createElement(h2);
+    otherTaskHeader.innerText = "Other Members Tasks";
+    allTasks.otherTasks.forEach((task) => {
       taskListElement.appendChild(createTaskElement(task));
     })
   });
@@ -47,13 +62,8 @@ function createTaskElement(task) {
   const taskDescElement = document.createElement('p');
   taskDescElement.innerText = task.desc;
 
-  const taskTimeElement = document.createElement('p');
-  taskTimeElement.innerText = task.time.toString();
-
   taskElement.appendChild(taskTitleElement);
   taskElement.appendChild(br);
   taskElement.appendChild(taskDescElement);
-  taskElement.appendChild(br);
-  taskElement.appendChild(taskTimeElement);
   return taskElement;
 }
