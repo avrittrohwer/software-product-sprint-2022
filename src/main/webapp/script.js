@@ -160,7 +160,7 @@ function createTaskElement(task, username) {
 
         //dentro de primera fila, crear columna 3
         const row1Col3 = document.createElement("div");
-        row1Col3.className = "col-3";
+        row1Col3.className = "col-2";
         //dentro de columna 3, poner titulo task
         const r1c3h = document.createElement("h6");
         r1c3h.innerText = task.title;
@@ -168,7 +168,7 @@ function createTaskElement(task, username) {
 
         //dentro de primera fila, crear columna 5
         const row1Col4 = document.createElement("div");
-        row1Col4.className = "col-4 b ps-2";
+        row1Col4.className = "col-3 b ps-2";
         //dentro de columna 3, poner titulo task
         const r1c4h = document.createElement("h6");
         r1c4h.innerText = "Time Goal: " + task.time + " min";
@@ -182,10 +182,10 @@ function createTaskElement(task, username) {
 
         //dentro de primera fila, crear columna 4
         const row1Col6 = document.createElement("div");
-        row1Col6.className = "col-1";
+        row1Col6.className = "col-3";
         //dentro de columna 3, poner titulo task
         const r1c6h = document.createElement("h6");
-        r1c6h.innerText = format_time(task.timeCreated);
+        r1c6h.innerText = "Started at: "+format_time(task.start);
 
 
 
@@ -196,79 +196,117 @@ function createTaskElement(task, username) {
 
         //dentro de segunda fila, crear columna 1
         const row2Col1 = document.createElement("div");
-        row2Col1.className = "col-6";
+        row2Col1.className = "col-5";
         //dentro de columna 1, poner descrip
         const r2c1p = document.createElement("p");
         r2c1p.innerText = "Description: " + task.desc;
 
-        //dentro de segunda fila, crear columna 3
-        const row2Col2 = document.createElement("div");
-        row2Col2.className = "col-2 text-center  b";
-        //dentro de columna 3, poner collaborate status
-        /*COLLABORATE
-        const r2c2p = document.createElement("p");
-        r2c2p.innerText = "Collaborate: ";
-        */
 
-        //dentro de segunda fila, crear columna 4
-        const row2Col3 = document.createElement("div");
-        row2Col3.className = "col-1";
-        //dentro de columna 3, poner collaborate status
+        if(task.start == task.end){
+            const row2Col2 = document.createElement("div");
+            row2Col2.className = "col-3 b ps-2"
+            const r2c2h = document.createElement("p");
+            d = new Date(task.start)
+            d.setMinutes(d.getMinutes() + parseInt(task.time))
+            r2c2h.innerText = "Goal end at: " + format_time(d);
 
-        /*const r2c3p = document.createElement("i");
+            const row2Col3 = document.createElement("div");
+            row2Col3.className = "col-1 text-center"
+            const r2c3h = document.createElement("i");
+            r2c3h.className = "bi bi-dash-lg";
 
-        if (task.colla == "yes") {
-            r2c3p.className = "bi bi-check-circle-fill";
-            r2c3p.style = "color: green";
-        }
-        else if (task.colla == "no") {
-            r2c3p.className = "bi bi-x-circle-fill";
-            r2c3p.style = "color: rgb(150, 60, 60)";
-        }
-        */
-        //dentro de segunda fila, crear columna 2
-        const row2Col4 = document.createElement("div");
-        row2Col4.className = "col-3 ps-5";
-        //dentro de columna 2, poner timegoal
-        /*STATUS
-        const r2c4p = document.createElement("p");
-        r2c4p.innerText = "Status: " + task.status;
-        */
+            const row2Col4 = document.createElement("div");
+            row2Col4.className = "col-3 fst-italic"
+            const r2c4h = document.createElement("p");
+            r2c4h.innerText = "TASK NOT FINISHED";
+            row2Col1.appendChild(r2c1p);
+            row2Col2.appendChild(r2c2h);
+            row2Col3.appendChild(r2c3h);
+            row2Col4.appendChild(r2c4h);
 
-        row2Col1.appendChild(r2c1p);
-        //row2Col2.appendChild(r2c2p); COLLABORATE
-        //row2Col3.appendChild(r2c3p); COLLABORATE ICON
-        //row2Col4.appendChild(r2c4p); STATUS
-        textRow2.appendChild(row2Col1)
-        textRow2.appendChild(row2Col2)
-        textRow2.appendChild(row2Col3)
-        textRow2.appendChild(row2Col4)
+            textRow2.appendChild(row2Col1)
+            textRow2.appendChild(row2Col2)
+            textRow2.appendChild(row2Col3)
+            textRow2.appendChild(row2Col4)
 
-        row1Col1.appendChild(r1c1h);
-        row1Col2.appendChild(r1c2h);
-        row1Col3.appendChild(r1c3h);
-        row1Col4.appendChild(r1c4h);
-        row1Col5.appendChild(r1c5h);
-        row1Col6.appendChild(r1c6h);
-        textRow1.appendChild(row1Col1);
-        textRow1.appendChild(row1Col2);
-        textRow1.appendChild(row1Col3);
-        textRow1.appendChild(row1Col4);
-        textRow1.appendChild(row1Col5);
-        textRow1.appendChild(row1Col6);
+            row1Col1.appendChild(r1c1h);
+            row1Col2.appendChild(r1c2h);
+            row1Col3.appendChild(r1c3h);
+            row1Col4.appendChild(r1c4h);
+            row1Col5.appendChild(r1c5h);
+            row1Col6.appendChild(r1c6h);
+            textRow1.appendChild(row1Col1);
+            textRow1.appendChild(row1Col2);
+            textRow1.appendChild(row1Col3);
+            textRow1.appendChild(row1Col4);
+            textRow1.appendChild(row1Col5);
+            textRow1.appendChild(row1Col6);
 
-        text.appendChild(textRow1);
-        text.appendChild(textRow2);
+            text.appendChild(textRow1);
+            text.appendChild(textRow2);
 
-        const hr = document.createElement('hr');
+            const hr = document.createElement('hr');
 
-        taskElement.appendChild(usPfp);
-        taskElement.appendChild(text);
+            taskElement.appendChild(usPfp);
+            taskElement.appendChild(text);
 
-        fulltask.appendChild(taskElement);
-        fulltask.appendChild(hr);
+            fulltask.appendChild(taskElement);
+            fulltask.appendChild(hr);
 
-        return fulltask;
+            return fulltask;
+        }else{
+            const row2Col2 = document.createElement("div");
+            row2Col2.className = "col-3 b ps-2"
+            const r2c2h = document.createElement("p");
+            d = new Date(task.start)
+            d.setMinutes(d.getMinutes() + parseInt(task.time))
+            r2c2h.innerText = "Goal end at: " + format_time(d);
+
+            const row2Col3 = document.createElement("div");
+            row2Col3.className = "col-1 text-center"
+            const r2c3h = document.createElement("i");
+            r2c3h.className = "bi bi-dash-lg";
+
+            const row2Col4 = document.createElement("div");
+            row2Col4.className = "col-3"
+            const r2c4h = document.createElement("p");
+            r2c4h.innerText = "Finished at: " + format_time(task.end);
+            row2Col1.appendChild(r2c1p);
+            row2Col2.appendChild(r2c2h);
+            row2Col3.appendChild(r2c3h);
+            row2Col4.appendChild(r2c4h);
+
+            textRow2.appendChild(row2Col1)
+            textRow2.appendChild(row2Col2)
+            textRow2.appendChild(row2Col3)
+            textRow2.appendChild(row2Col4)
+
+            row1Col1.appendChild(r1c1h);
+            row1Col2.appendChild(r1c2h);
+            row1Col3.appendChild(r1c3h);
+            row1Col4.appendChild(r1c4h);
+            row1Col5.appendChild(r1c5h);
+            row1Col6.appendChild(r1c6h);
+            textRow1.appendChild(row1Col1);
+            textRow1.appendChild(row1Col2);
+            textRow1.appendChild(row1Col3);
+            textRow1.appendChild(row1Col4);
+            textRow1.appendChild(row1Col5);
+            textRow1.appendChild(row1Col6);
+
+            text.appendChild(textRow1);
+            text.appendChild(textRow2);
+
+            const hr = document.createElement('hr');
+
+            taskElement.appendChild(usPfp);
+            taskElement.appendChild(text);
+
+            fulltask.appendChild(taskElement);
+            fulltask.appendChild(hr);
+
+             return fulltask;
+        }        
     }
 }
 
@@ -313,13 +351,3 @@ function disableBtns(stat) {
         document.getElementById('endTaskBtn').disabled = true;
     }
 }
-
-/*FOR THE SELECT USER DROPDOWN
-function validateFormUser() {
-    let userna = document.forms["username"]["userN"].value;
-    if (userna == "username") {
-        alert("Enter valid values!!");
-        return false;
-    }
-}
-*/

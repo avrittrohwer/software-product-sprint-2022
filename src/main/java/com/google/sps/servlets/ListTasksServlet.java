@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.google.sps.data.Task;
 import com.google.sps.data.User;
 import com.google.sps.data.Response;
+import com.google.cloud.datastore.StructuredQuery.OrderBy;
 
 import java.util.HashMap;
 import java.io.IOException;
@@ -75,7 +76,7 @@ public class ListTasksServlet extends HttpServlet {
     }
 
     Query<Entity> taskQuery =
-        Query.newEntityQueryBuilder().setKind("Task").build();
+        Query.newEntityQueryBuilder().setKind("Task").setOrderBy(OrderBy.desc("start")).build();
     QueryResults<Entity> taskResults = datastore.run(taskQuery);
 
     Task currentTask = null;
@@ -92,7 +93,7 @@ public class ListTasksServlet extends HttpServlet {
       String tuserID = entity.getString("userID");
       String taskID = entity.getString("taskID");
 
-      System.out.printf("list tasks: title = %s, userID = %s, taskID = %s \n", title, tuserID, taskID);
+      //System.out.printf("list tasks: title = %s, userID = %s, taskID = %s \n", title, tuserID, taskID);
       Task task = new Task(title, desc, time, start, end);
       
       if (userID.equals(tuserID)) {

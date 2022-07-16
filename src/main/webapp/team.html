@@ -86,41 +86,6 @@
                     <h3>MY TEAM ACTIVITY</h3>
                 </div>
 
-                <!-- HARD CODED TASK CONTAINER
-                    <div class="users-drawer  rounded-1">
-                    <i class="bi bi-person-circle uspfp" style="font-size: 2.5vw; padding: 0px 5px;"></i>
-                    <div class="text">
-                        <div class="row m-0">
-                            <div class="col-3">
-                                <h6>User name </h6>
-                            </div>
-                            <div class="col-1 ">
-                                <i class="bi bi-arrow-right flech" style="font-size: 20px;"></i>
-                            </div>
-                            <div class="col-7 ">
-                                <h6>TASK TITLE</h6>
-                            </div>
-                            <div class="col-1 text-end">
-                                <p>TIMESTAMP</p>
-                            </div>
-                        </div>
-                        <div class="row m-0">
-                            <div class="col-6">
-                                <p>task description</p>
-                            </div>
-                            <div class="col-3">
-                                <p>tast time</p>
-                            </div>
-                            <div class="col-2">
-                                <p>collaborate:</p>
-                            </div>
-                            <div class="col-1">
-                                <i class="bi bi-x-circle-fill"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
-
                 <div class="logbox" id="logbox">
                     <div id="users">
                     </div>
@@ -185,59 +150,6 @@
         </div>
 
     </div>
-
-    <!-- MODAL END TASK (NOT IN USE)
-    <div class="modal fade "  id="activetaskmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" style="min-width: 50%;">
-            <div class="modal-content" style="background-color: rgb(11, 43, 78);">
-                <div class="modal-header">
-                    <h5 class="modal-title text-light" id="exampleModalLabel">COMPLETE A TASK</h5>
-                    <button type="button"  class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="cleanDiv()"></button>
-                </div>
-                <div class="modal-body">
-                    <form name="comTask" action="/complete-task" method="POST" onsubmit="addUserNForm()">
-                        <div class="mb-3">
-                            <p class="text-light">Your active task:</p>
-                            <input type="hidden" name="userN" class="TaskUserName" type="text"/>
-                            <div id="activeTasks">
-                            </div>
-                        </div>
-                        <br />
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="cleanDiv()">Cancel</button>
-                            <button type="submit" class="btn btn-success">End Task!</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    -->
-
-    <!-- MODAL SELECT USER (NOT IN USE)
-    <div class="modal fade" id="selectuser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">YOUR USERNAME</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form name="username" onsubmit="loadUserView(); return validateFormUser()">
-                        <div class="mb-3">
-                            
-                        </div>
-                        <br />
-                        <div class="modal-footer">
-                            <button type="reset" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-success">Accept</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    -->
 
 </body>
 
