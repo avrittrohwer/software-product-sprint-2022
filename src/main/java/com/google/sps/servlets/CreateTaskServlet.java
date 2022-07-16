@@ -23,14 +23,21 @@ public class CreateTaskServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
     // Get the value entered in the form.
+    String userN = request.getParameter("userN");
     String title = request.getParameter("title");
     String desc = request.getParameter("desc");
     String time = request.getParameter("time");
     String username = request.getParameter("userN");
-
+    if (username == null){
+        
+            response.sendError(400, "userN must be set");
+            return;
+        
+    }
     // search for userID from userN in datastore 
     Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
     Key userKey = datastore.newKeyFactory().setKind("User").newKey(username);
+    
 
     Entity user = datastore.get(userKey);
     if (user == null) {
@@ -39,7 +46,7 @@ public class CreateTaskServlet extends HttpServlet {
     }
     String userID = user.getString("userID");
 
-    System.out.printf("create task: userN = %s, userID = %s \n", username, userID);
+    //System.out.printf("create task: userN = %s, userID = %s \n", username, userID);
 
     if (userID.equals("")) {
         response.sendError(400, "no userID found for this username");
@@ -68,7 +75,7 @@ public class CreateTaskServlet extends HttpServlet {
     datastore.put(user);
 
     // reload page 
-    response.sendRedirect("/team.html?userN=" + username);
+    response.sendRedirect("/team?userN=" + username);
   }
 }
 

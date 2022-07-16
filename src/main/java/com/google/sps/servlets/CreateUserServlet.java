@@ -47,7 +47,7 @@ public class CreateUserServlet extends HttpServlet {
         datastore.put(taskEntity);
     }
  
-    response.sendRedirect("/team.html?userN=" + username);
+    response.sendRedirect("/team?userN=" + username);
   }
 }
 
