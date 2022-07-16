@@ -4,10 +4,7 @@ import com.google.cloud.datastore.Datastore;
 import com.google.cloud.datastore.DatastoreOptions;
 import com.google.cloud.datastore.Entity;
 import com.google.cloud.datastore.Key;
-import com.google.cloud.datastore.FullEntity;
-import com.google.cloud.datastore.KeyFactory;
-import com.google.cloud.datastore.Query;
-import com.google.cloud.datastore.QueryResults;
+import com.google.cloud.datastore.PathElement;
 
 import java.util.UUID;
 import java.io.IOException;
@@ -44,27 +41,25 @@ public class CreateTaskServlet extends HttpServlet {
         response.sendError(400, "user not found");
         return;
     }
-    String userID = user.getString("userID");
-
-    //System.out.printf("create task: userN = %s, userID = %s \n", username, userID);
-
-    if (userID.equals("")) {
-        response.sendError(400, "no userID found for this username");
+    String currentTaskID = user.getString("currentTask");
+    if (!currentTaskID.equals("")) {
+        response.sendError(400, "the user has an active current task, they must complete their current task before creating a new one");
         return;
     }
+
+    System.out.printf("create task: userN = %s \n", username);
 
     long curTime = System.currentTimeMillis(); 
     String taskID = UUID.randomUUID().toString();
 
-    KeyFactory keyFactory = datastore.newKeyFactory().setKind("Task");
-    FullEntity taskEntity =
-        Entity.newBuilder(keyFactory.newKey(taskID))
+    Key taskKey = datastore.newKeyFactory().addAncestor(PathElement.of("User",username)).setKind("Task").newKey(taskID);
+    Entity taskEntity =
+        Entity.newBuilder(taskKey)
             .set("title", title)
             .set("desc", desc)
             .set("time", time)
             .set("start", curTime)
             .set("end", curTime)
-            .set("userID", userID)
             .set("taskID", taskID)
             .build();
     datastore.put(taskEntity);
