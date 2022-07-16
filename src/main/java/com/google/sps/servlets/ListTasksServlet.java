@@ -27,6 +27,7 @@ public class ListTasksServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
     Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
     String userN = request.getParameter("userN");
     String userID = "";
@@ -51,7 +52,7 @@ public class ListTasksServlet extends HttpServlet {
         String duserID = entity.getString("userID");
         String dcurrentTaskID = entity.getString("currentTask");
 
-        System.out.printf("list task: userN = %s, userID = %s, currentTask = %s \n", duserN, duserID, dcurrentTaskID);
+        //System.out.printf("list task: userN = %s, userID = %s, currentTask = %s \n", duserN, duserID, dcurrentTaskID);
 
         if (userN.equals(duserN)) {
             userID = duserID;

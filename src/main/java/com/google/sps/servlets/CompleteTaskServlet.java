@@ -50,11 +50,11 @@ public class CompleteTaskServlet extends HttpServlet {
     }
     String currentTaskID = user.getString("currentTask");
     if (currentTaskID.equals("")) {
-        response.sendRedirect("/team.html?userN=" + userN);
+        response.sendRedirect("/team?userN=" + userN);
         return;
     }
 
-    System.out.printf("complete task: userN = %s, userID = %s, currentTask = %s \n", userN, userID, currentTaskID);
+    //System.out.printf("complete task: userN = %s, userID = %s, currentTask = %s \n", userN, userID, currentTaskID);
 
     user = Entity.newBuilder(user) 
         .set("currentTask", "")
@@ -74,6 +74,6 @@ public class CompleteTaskServlet extends HttpServlet {
         .build();
     datastore.put(task);
     
-    response.sendRedirect("/team.html?userN=" + userN);
+    response.sendRedirect("/team?userN=" + userN);
   }
 }
