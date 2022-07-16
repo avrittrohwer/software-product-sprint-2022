@@ -4,14 +4,8 @@ import com.google.cloud.datastore.Datastore;
 import com.google.cloud.datastore.DatastoreOptions;
 import com.google.cloud.datastore.Key;
 import com.google.cloud.datastore.Entity;
-import com.google.cloud.datastore.FullEntity;
-import com.google.cloud.datastore.Query;
-import com.google.cloud.datastore.QueryResults;
 import com.google.cloud.datastore.KeyFactory;
-import com.google.cloud.datastore.NullValue;
-import com.google.sps.data.User;
 
-import java.util.UUID;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,12 +30,10 @@ public class CreateUserServlet extends HttpServlet {
     Entity user = datastore.get(userKey);
 
     if (user == null) {
-        String userID = UUID.randomUUID().toString();
         KeyFactory keyFactory = datastore.newKeyFactory().setKind("User");
-        FullEntity taskEntity =
+        Entity taskEntity =
             Entity.newBuilder(keyFactory.newKey(username))
                 .set("userN", username)
-                .set("userID", userID)
                 .set("currentTask", "")
                 .build();
         datastore.put(taskEntity);

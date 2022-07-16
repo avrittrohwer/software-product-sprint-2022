@@ -1,7 +1,6 @@
 package com.google.sps.data;
 
 import java.util.List;
-import com.google.sps.data.User;
 
 public final class Response {
     private final Task currentTask;
