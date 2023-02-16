@@ -1,5 +1,4 @@
-Google SPS web app "Productive buddies"
-<!--This directory is where you'll write all of your code!
+This directory is where you'll write all of your code!
 
 By default it contains a barebones portfolio web app. 
 
@@ -36,4 +35,3 @@ To deploy to appengine, run:
 ```
 mvn package appengine:deploy
 ```
--->
